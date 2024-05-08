@@ -9,7 +9,7 @@ class AboutScreen extends StatelessWidget {
     },
     {
       "image": Images.aboutImage,
-      "text": "Version ${version}\n(validador_qr_ister)",
+      "text": "Version ${version}\n(validador_qr_epunemi)",
     },
   ];
 

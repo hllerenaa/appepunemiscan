@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:appepunemiscan/src/widget/extends_files.dart';
 import 'package:appepunemiscan/src/widget/rout_controller.dart';
 import 'package:appepunemiscan/src/pages/profile/profile.dart';
-import 'graduaciones/escaneargraduados.dart';
+import 'graduaciones/escaneartaller.dart';
 
 
 class RoutScreen extends StatelessWidget {
@@ -67,13 +67,13 @@ class RoutScreen extends StatelessWidget {
                   IconButton(
                     enableFeedback: true,
                     onPressed: () {
-                      routController.pageIndex.value = 2;
+                      routController.pageIndex.value = 1;
                     },
-                    icon: routController.pageIndex.value == 2
+                    icon: routController.pageIndex.value == 1
                         ? SvgPicture.asset(Images.profileFillIcon)
                         : SvgPicture.asset(Images.profileBlankIcon),
                   ),
-                  routController.pageIndex.value == 2
+                  routController.pageIndex.value == 1
                       ? boldText("Perfil", ColorResources.naranja, 12)
                       : regularText("Perfil", ColorResources.grey6B7, 11),
                 ],

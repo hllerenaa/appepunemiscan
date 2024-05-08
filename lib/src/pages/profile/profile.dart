@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                             regularText("Cancelar", ColorResources.blue1D3, 16),
                       ),
                       SizedBox(width: 30),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                         child: VerticalDivider(
                           color: ColorResources.greyEDE,

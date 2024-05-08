@@ -1,6 +1,8 @@
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:appepunemiscan/src/widget/extends_files.dart';
 
+import '../utils/funciones.dart';
+
 void openModal(BuildContext context, Map<String, dynamic> data) {
   showModalBottomSheet(
     context: context,
@@ -12,24 +14,57 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 16),
-            Text(
-              data['tipo'],
-              style: TextStyle(fontSize: 18),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                convertToUtf8(data['taller']), // Display 'taller' as title
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ),
-            Text(
-              data['nombre'],
-              style: TextStyle(fontSize: 16),
+            SizedBox(height: 16),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                convertToUtf8(data['nombre']),
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
             ),
-            Text(
-              data['cedula'],
-              style: TextStyle(fontSize: 16),
+            if (data['tienesaldo']) ...[ // If 'tienesaldo' is true
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Text(
+                  'Saldo: ${data['saldo']}',
+                  style: TextStyle(fontSize: 16, color: Colors.red), // Display 'saldo' in red
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Text(
+                  'Acceso restringido porque estudiante refleja deuda pendiente',
+                  style: TextStyle(fontSize: 16, color: Colors.red), // Display message in red
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+            SizedBox(height: 16),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                data['cedula'],
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40), // Espaciado izquierdo y derecho
-              child: Center(child: Text(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
                 data['message'],
                 style: TextStyle(fontSize: 16),
-              ),) 
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(height: 16),
             // Widget animado según el valor de data['activo']
@@ -65,6 +100,7 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
   );
 }
 
+
 class EscanearGraduadosModel extends ChangeNotifier {
   final FocusNode unfocusNode = FocusNode();
   String? scan = '0';
@@ -93,7 +129,7 @@ class EscanearGraduadosModel extends ChangeNotifier {
     // Make HTTP request and show Sweet Alert
     try {
       final response = await BackendService.get(
-          '${urlConsumo}/api/v1/ingresograduaciones/',
+          '${urlConsumo}/apimobile/v1/ingresojornadas/',
           params: {
             'qr': "${scan}",
             'id': "${idpersona}",
@@ -103,11 +139,15 @@ class EscanearGraduadosModel extends ChangeNotifier {
       if (response['success']) {
         Navigator.pop(context); // Close the loading indicator dialog
         final persona_ = response['aData'];
+        print(persona_);
         // ignore: use_build_context_synchronously
         openModal(context, {
           'tipo': persona_['tipo'],
           'nombre': persona_['fullName'],
           'cedula': persona_['documento'],
+          'taller': persona_['taller'],
+          'tienesaldo': persona_['tienesaldo'],
+          'saldo': persona_['saldo'],
           'message': response['msg'],
           'activo': response['acceso'],
         });
@@ -120,7 +160,7 @@ class EscanearGraduadosModel extends ChangeNotifier {
           type: QuickAlertType.error,
           confirmBtnText: 'Listo',
           title: 'Oops...',
-          text: response['msg'],
+          text: convertToUtf8(response['msg']),
         );
       }
     } catch (e) {

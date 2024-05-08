@@ -49,11 +49,6 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 5),
-                        Center(
-                          child: lightText("Versión: 0.0.1",
-                              ColorResources.blue1D3, 16, TextAlign.center),
-                        ),
                         const SizedBox(height: 15),
                         Center(
                             child: Image.asset(

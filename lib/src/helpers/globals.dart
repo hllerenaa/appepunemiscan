@@ -8,4 +8,5 @@ int periodoId = 2;
 //     : "http://localhost:8000"; // iOS emulador o dispositivo físico
 
 String urlMedia = "https://epunemi.gob.ec";
-String urlConsumo = "https://sagest.epunemi.gob.ec";
+String urlConsumo = "http://192.168.1.8:900";
+// String urlConsumo = "https://sagest.epunemi.gob.ec";

@@ -1,6 +1,6 @@
 import 'package:appepunemiscan/src/widget/extends_files.dart';
 import 'package:appepunemiscan/src/services/escaner_model.dart';
-import 'package:appepunemiscan/src/services/escaner_graduaciones_model.dart';
+import 'package:appepunemiscan/src/services/escanear_taller_model.dart';
 
 class EscanerGraduadosPage extends StatefulWidget {
   final String titulo;

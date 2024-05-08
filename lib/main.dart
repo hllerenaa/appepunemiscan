@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     const btnColor = Color(0xFFFE9900);
     const bgColor = Color(0xFFF5F5F5);
     return GetMaterialApp(
-      title: 'Validador de Acceso Campus Ister',
+      title: 'Validador de Acceso Campus',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
