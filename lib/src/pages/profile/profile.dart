@@ -113,7 +113,7 @@ class ProfilePage extends StatelessWidget {
                       backgroundColor: ColorResources.blue1D3,
                       child: ClipOval(
                         child: ImageFile(
-                          imagePath: "${urlConsumo}${context.userPhoto}",
+                          imagePath: "${context.userPhoto}",
                           isNetworkImage: true, // Es una imagen de la red
                         ),
                       ),

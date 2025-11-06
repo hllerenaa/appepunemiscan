@@ -127,13 +127,13 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
   );
 }
 
-class EscanearJornadasModel extends ChangeNotifier {
+class EscanerCongresosModel extends ChangeNotifier {
   final FocusNode unfocusNode = FocusNode();
   String? scan = '0';
   int? idpersona = 0;
   final MobileScannerController _scannerController = MobileScannerController();
 
-  EscanearJornadasModel(this.idpersona);
+  EscanerCongresosModel(this.idpersona);
 
   Future<void> scanQRCode(BuildContext context) async {
     // ✅ Guardar el context de la página principal
@@ -196,7 +196,7 @@ class EscanearJornadasModel extends ChangeNotifier {
 
     try {
       final response = await BackendService.get(
-        '${urlConsumo}/apimobile/v1/ingresojornadas/',
+        '${urlConsumo}/apimobile/v1/ingresocongresos/',
         params: {
           'qr': "$scan",
           'id': "$idpersona",

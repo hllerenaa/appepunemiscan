@@ -1,17 +1,16 @@
 import 'package:appepunemiscan/src/widget/extends_files.dart';
-import 'package:appepunemiscan/src/services/escaner_model.dart';
 import 'package:appepunemiscan/src/services/escanear_taller_model.dart';
 
-class EscanerGraduadosPage extends StatefulWidget {
+class EscanerJornadasPage extends StatefulWidget {
   final String titulo;
 
-  EscanerGraduadosPage({required this.titulo});
+  EscanerJornadasPage({required this.titulo});
 
   @override
-  _EscanerGraduadosPageState createState() => _EscanerGraduadosPageState();
+  _EscanerJornadasPageState createState() => _EscanerJornadasPageState();
 }
 
-class _EscanerGraduadosPageState extends State<EscanerGraduadosPage> {
+class _EscanerJornadasPageState extends State<EscanerJornadasPage> {
   Future<void> _refreshData() async {
     // Simular una pausa de 1 segundo para mostrar el indicador de recarga
     await Future.delayed(Duration(seconds: 0));
@@ -22,14 +21,13 @@ class _EscanerGraduadosPageState extends State<EscanerGraduadosPage> {
       context,
       MaterialPageRoute(
         builder: (BuildContext context) =>
-            EscanerGraduadosPage(titulo: widget.titulo),
+            EscanerJornadasPage(titulo: widget.titulo),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final model = EscanearQrModel(context.userId);
 
     return Scaffold(
         appBar: AppBar(
@@ -61,7 +59,7 @@ class _EscanerGraduadosPageState extends State<EscanerGraduadosPage> {
               ),
             ),
           ),
-          title: boldText("Ingreso Campus", ColorResources.black0F1, 20),
+          title: boldText("Validador Jornadas", ColorResources.black0F1, 20),
         ),
         backgroundColor: ColorResources.white,
         body: Padding(
@@ -89,7 +87,8 @@ class _EscanerGraduadosPageState extends State<EscanerGraduadosPage> {
                         SizedBox(height: 30),
                         InkWell(
                           onTap: () {
-                            EscanearGraduadosModel(context.userId).scanQRCode(context);
+                            EscanearJornadasModel(context.userId)
+                                .scanQRCode(context);
                           },
                           child: Container(
                             height: 40,

@@ -60,10 +60,8 @@ class _LoginPageState extends State<LoginPage> {
                         boldText(
                             "Bienvenido a EPUNEMI", ColorResources.blue1D3, 24),
                         const SizedBox(height: 7),
-                        lightText(
-                            "Validador de Accesos Jornadas Academicas",
-                            ColorResources.blue1D3,
-                            16),
+                        lightText("Validador de Accesos Jornadas/Congresos",
+                            ColorResources.blue1D3, 16),
                         const SizedBox(height: 40),
                         Container(
                           height: 100,
@@ -115,8 +113,10 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
-                                      color: ColorResources.greyE5E, // Cambiar el color cuando el campo esté enfocado
-                                      width: 2, // También puedes cambiar el ancho si lo deseas
+                                      color: ColorResources.greyE5E,
+                                      // Cambiar el color cuando el campo esté enfocado
+                                      width:
+                                          2, // También puedes cambiar el ancho si lo deseas
                                     ),
                                     borderRadius: BorderRadius.circular(5),
                                   ),
